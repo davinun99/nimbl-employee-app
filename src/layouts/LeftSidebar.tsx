@@ -9,7 +9,7 @@ import UserProfileWidget from '../components/UserProfileWidget';
 const SideNav = () => {
     return <div className="sidebar-content">
         <div id="sidebar-menu">
-            <AppMenu role="Nimbl.ai"/>
+            <AppMenu role="nimbl.ai"/>
         </div>
     </div>
 }
