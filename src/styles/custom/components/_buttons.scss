@@ -33,11 +33,6 @@
 
 .btn-white {
     border-color: $gray-300;
-
-    @include hover-focus {
-        background-color: $gray-300;
-        border-color: $gray-400;
-    }
 }
 //
 // Link buttons
@@ -47,12 +42,6 @@
     font-weight: $font-weight-normal;
     color: $link-color;
     background-color: transparent;
-    @include hover {
-        color: $link-hover-color;
-        text-decoration: $link-hover-decoration;
-        background-color: transparent;
-        border-color: transparent;
-    }
     &:focus,
     &.focus {
         text-decoration: $link-hover-decoration;
@@ -85,11 +74,6 @@
 
     &:focus {
         box-shadow: none;
-    }
-
-    @include hover-focus {
-        background-color: fade-in(rgba($bg, $btn-soft-bg-opacity), .05);
-        color: $color;
     }
 }
 

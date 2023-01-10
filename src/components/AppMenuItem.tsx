@@ -1,14 +1,13 @@
 import { Link, RouteObject } from "react-router-dom";
 import classNames from 'classnames';
-import { Fragment } from "react";
+
 type ItemWithChildProps = {
 	item: RouteObject;
 	linkClassNames: string;
 	subMenuClassNames: string;
 	activatedMenuItemIds: string[];
-	role: string;
 };
-const MenuItemWithChildren = ({ item, linkClassNames, subMenuClassNames, activatedMenuItemIds, role }: ItemWithChildProps) => {
+const MenuItemWithChildren = ({ item, linkClassNames, subMenuClassNames, activatedMenuItemIds }: ItemWithChildProps) => {
     // const Icon = item.icon || null;
     return (
         <li className={classNames('side-nav-item', { 'active mm-active': item.id && activatedMenuItemIds.indexOf(item.id) >= 0 })}>
@@ -20,7 +19,8 @@ const MenuItemWithChildren = ({ item, linkClassNames, subMenuClassNames, activat
 				>
 					{/* {item.icon && <Icon />} */}
 					<span> {item.path} </span>
-					<span className="menu-arrow"></span>
+					{/* <span className=""></span> */}
+					{/* <ChevronRight /> */}
 				</Link>
 
 				<ul
@@ -28,28 +28,6 @@ const MenuItemWithChildren = ({ item, linkClassNames, subMenuClassNames, activat
 						'mm-collapse mm-show': item.id && activatedMenuItemIds.indexOf(item.id) >= 0,
 					})}
 					aria-expanded={item.id ? activatedMenuItemIds.indexOf(item.id) >= 0 : "false"}>
-					{/* {item.children.map((child, i) => {
-						return (
-							<Fragment key={i}>
-								{child.children ? (
-									<MenuItemWithChildren
-										item={child}
-										linkClassNames={classNames({ active: activatedMenuItemIds.indexOf(child.id) >= 0 })}
-										activatedMenuItemIds={activatedMenuItemIds}
-										subMenuClassNames="side-nav-third-level"
-										role={role}
-									/>
-								) : (
-										<MenuItem
-											item={child}
-											className={classNames({ active: activatedMenuItemIds.indexOf(child.id) >= 0 })}
-											linkClassName={classNames({ active: activatedMenuItemIds.indexOf(child.id) >= 0 })}
-											role={role}
-										/>
-									)}
-							</Fragment>
-						);
-					})} */}
 				</ul>
 			</div>
         </li>
@@ -75,7 +53,7 @@ const MenuItemLink = ({ item, className}: ItemProps) => { //XXX
         <Link to={item.path || "/"} className={classNames('side-nav-link-ref', 'side-sub-nav-link', className)}>
             {/* {item.icon && <Icon />} */}
             <span>
-				NAME!
+				{item.path}
 			</span>
         </Link>
     );

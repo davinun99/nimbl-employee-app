@@ -1,11 +1,4 @@
-// 
-// calendar.scss
-//
-@import '~@fullcalendar/core/main.css';
-@import '~@fullcalendar/daygrid/main.css';
-@import '~@fullcalendar/bootstrap/main.css';
-@import '~@fullcalendar/timegrid/main.css';
-@import '~@fullcalendar/list/main.css';
+
 
 .calendar {
     float: left;
@@ -197,12 +190,5 @@ th.fc-day-header {
 
     .fc-today-button {
         display: none;
-    }
-}
-
-// overriding button sizes
-.fc-toolbar {
-    .btn {
-        @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-line-height-sm, $btn-border-radius-sm);
     }
 }
