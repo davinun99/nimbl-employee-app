@@ -1,7 +1,12 @@
+import { Suspense } from "react";
+
+const EmptyLoader = () => <div>Loading...</div>
 
 const LoginPage = () => {
 	return (
-		<div>Login</div>
+		<Suspense fallback={<EmptyLoader/>}>
+			<div>Login...</div>
+		</Suspense>
 	)
 }
 

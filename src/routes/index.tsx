@@ -1,8 +1,8 @@
 import React from "react";
 import { createBrowserRouter, RouteObject } from "react-router-dom";
+import LoginPage from "../pages/LoginPage";
 const MainLayout = React.lazy(() => import('../layouts/MainLayout'));
 const ErrorPage = React.lazy(() => import('../pages/ErrorPage'));
-const LoginPage = React.lazy(() => import('../pages/LoginPage'));
 const RootPage = React.lazy(() => import('../pages/RootPage'));
 
 export const routes: RouteObject[] = [
