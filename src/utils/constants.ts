@@ -1,0 +1,1 @@
+export const ADMIN_EMAIL = 'david@nimbl.ai';
