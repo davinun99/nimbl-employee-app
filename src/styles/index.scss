@@ -1,11 +1,20 @@
-:root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+html {
+	position: relative;
+	min-height: 100%;
 }
+body {
+	padding-bottom: 60px;
+	overflow-x: hidden;
+}
+
+//Core files
+@import 'bootstrap';
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+
+@import "./variables";
+@import "./left-menu";
+@import "./topbar";
+@import "./footer";
+@import "./layouts";

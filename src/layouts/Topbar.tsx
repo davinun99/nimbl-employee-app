@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import { Container } from 'reactstrap';
 import { Menu, X, Settings, User, HelpCircle, Lock, LogOut } from 'react-feather';
@@ -75,13 +74,6 @@ const TopBar = () => (
 						</form>
 					</div>
 				</li>
-
-				<li className="notification-list">
-					<button className="btn btn-link nav-link right-bar-toggle" onClick={() => {}}>
-						<Settings />
-					</button>
-				</li>
-
 				<ProfileDropdown profilePic={profilePic} menuItems={ProfileMenus} username={'Shreyu N'} description="Administrator" />
 			</ul>
 		</Container>
