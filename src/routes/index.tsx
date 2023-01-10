@@ -1,14 +1,21 @@
+import React from "react";
 import { createBrowserRouter, RouteObject } from "react-router-dom";
-import MainLayout from "../layouts/MainLayout";
-import ErrorPage from '../pages/ErrorPage';
-import LoginPage from "../pages/LoginPage";
-import RootPage from '../pages/RootPage';
+const MainLayout = React.lazy(() => import('../layouts/MainLayout'));
+const ErrorPage = React.lazy(() => import('../pages/ErrorPage'));
+const LoginPage = React.lazy(() => import('../pages/LoginPage'));
+const RootPage = React.lazy(() => import('../pages/RootPage'));
 
 export const routes: RouteObject[] = [
 	{
 		path: "/",
 		element: <MainLayout />,
-		errorElement: <ErrorPage />
+		errorElement: <ErrorPage />,
+		children: [
+			{
+				path: "/",
+				element: <RootPage />
+			}
+		]
 	},
 	{
 		path: "/login",

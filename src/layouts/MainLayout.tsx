@@ -1,7 +1,8 @@
 import { Suspense } from "react"
+import { Outlet } from "react-router-dom";
 import { Container } from "reactstrap";
 import Footer from "./Footer";
-import LeftSidebar from "./LeftSideBar";
+import LeftSidebar from "./LeftSidebar";
 import TopBar from "./Topbar";
 
 const EmptyLoader = () => <div></div>;
@@ -20,7 +21,7 @@ const MainLayout = () => {
 					<div className="content">
 						<Container fluid>
 							<Suspense fallback={<EmptyLoader/>}>
-								content
+								<Outlet/>
 							</Suspense>
 						</Container>
 					</div>

@@ -1,3 +1,11 @@
+
+
+@import 'bootstrap';
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "./variables";
+@import "../node_modules/bootstrap/scss/mixins";
+
 html {
 	position: relative;
 	min-height: 100%;
@@ -5,16 +13,11 @@ html {
 body {
 	padding-bottom: 60px;
 	overflow-x: hidden;
+	background: $body-bg;
 }
 
-//Core files
-@import 'bootstrap';
-@import "../../node_modules/bootstrap/scss/functions";
-@import "../../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/mixins";
-
-@import "./variables";
 @import "./left-menu";
 @import "./topbar";
 @import "./footer";
 @import "./layouts";
+@import "./helper";
