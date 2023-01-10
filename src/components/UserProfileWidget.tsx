@@ -8,11 +8,11 @@ const UserProfileWidget = ({
     
     const profilePic = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLweB8yzejCatN8TyaacHUKbIqFtsNdp-wrg&usqp=CAU';
     return <>
-        <div className="media user-profile mt-2 mb-2">
+        <div className="media user-profile my-2 d-flex">
             <img src={profilePic} className="avatar-sm rounded-circle mr-2" alt="Avatar" />
             <img src={profilePic} className="avatar-xs rounded-circle mr-2" alt="Avatar" />
 
-            <div className={`media-body`}>
+            <div className="media-body px-2">
                 <h6 className="pro-user-name mt-0 mb-0">David Nuñez</h6>
                 <span className="pro-user-desc">Nimbl.ai</span>
             </div>
