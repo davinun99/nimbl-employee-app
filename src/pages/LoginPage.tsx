@@ -46,7 +46,7 @@ const LoginPage = () => {
 											<Col xs={12} className="d-flex justify-content-center">
 												<a href="/">
 													<img src={logo} alt="" height="36" />
-													<h4 className="d-inline align-middle ml-1 text-logo"> employee portal</h4>
+													<h4 className="d-inline align-middle ms-1 text-logo"> employee portal</h4>
 												</a>
 											</Col>
 											<Col xs={12} className="d-flex justify-content-center">

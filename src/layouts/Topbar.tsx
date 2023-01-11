@@ -43,7 +43,7 @@ const TopBar = () => (
 	<div className="navbar navbar-expand flex-column flex-md-row navbar-custom">
 		<Container fluid>
 			{ /* logo */}
-			<Link to="/" className="navbar-brand mr-0 mr-md-2 logo">
+			<Link to="/" className="navbar-brand me-0 me-md-2 logo">
 				<span className="logo-lg">
 					<img src={logo} alt="" height="36" />
 				</span>
@@ -63,7 +63,7 @@ const TopBar = () => (
 			</ul>
 
 
-			<ul className="navbar-nav flex-row ml-auto d-flex list-unstyled topnav-menu float-right mb-0">
+			<ul className="navbar-nav flex-row ms-auto d-flex list-unstyled topnav-menu float-right mb-0">
 				<li className="d-none d-sm-block">
 					<div className="app-search">
 						<form>
