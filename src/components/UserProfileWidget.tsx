@@ -3,24 +3,30 @@ import * as FeatherIcon from 'react-feather';
 import { Link, useNavigate } from 'react-router-dom';
 import axiosClient from '../utils/axios';
 
+type Props = {
+	profilePic: string;
+	name: string;
+	description: string;
+};
+
 const UserProfileWidget = ({ 
 	// user, role, nimblUser, showRightSidebar
-}) => {
+	profilePic, name, description
+}: Props) => {
 	const navigate = useNavigate();
     const handleLogout = () => {
 		localStorage.clear();
 		axiosClient.defaults.headers.common.Authorization = '';
 		navigate('/login');
 	}
-    const profilePic = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLweB8yzejCatN8TyaacHUKbIqFtsNdp-wrg&usqp=CAU';
     return <>
         <div className="media user-profile my-2 d-flex">
             <img src={profilePic} className="avatar-sm rounded-circle me-2" alt="Avatar" />
             <img src={profilePic} className="avatar-xs rounded-circle me-2" alt="Avatar" />
 
             <div className="media-body px-2">
-                <h6 className="pro-user-name mt-0 mb-0">David Nuñez</h6>
-                <span className="pro-user-desc">Nimbl.ai</span>
+                <h6 className="pro-user-name mt-0 mb-0">{name}</h6>
+                <span className="pro-user-desc">{description}</span>
             </div>
 
             <UncontrolledDropdown className="align-self-center profile-dropdown-menu sidebarUncontrolledDropdown" direction='start' inNavbar>

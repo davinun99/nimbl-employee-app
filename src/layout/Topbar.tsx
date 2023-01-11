@@ -4,7 +4,6 @@ import { Menu, X, Settings, User, HelpCircle, Lock, LogOut } from 'react-feather
 
 
 import logo from '../assets/nimblLogo.png';
-import profilePic from '../assets/nimblLogo.png';
 import ProfileDropdown from "../components/ProfileDropdown";
 import { ProfileMenuItem } from "../types";
 
@@ -38,8 +37,12 @@ const ProfileMenus: ProfileMenuItem[] = [
 	}
 ];
 
-type Props = {};
-const TopBar = () => (
+type Props = {
+	profilePic: string;
+	username: string;
+	description: string;
+};
+const TopBar = ({profilePic, username, description}: Props) => (
 	<div className="navbar navbar-expand flex-column flex-md-row navbar-custom">
 		<Container fluid>
 			{ /* logo */}
@@ -74,7 +77,7 @@ const TopBar = () => (
 						</form>
 					</div>
 				</li>
-				<ProfileDropdown profilePic={profilePic} menuItems={ProfileMenus} username={'Shreyu N'} description="Administrator" />
+				<ProfileDropdown profilePic={profilePic} menuItems={ProfileMenus} username={username} description={description} />
 			</ul>
 		</Container>
 	</div>

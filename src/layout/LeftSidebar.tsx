@@ -14,11 +14,15 @@ const SideNav = () => {
     </div>
 }
 
-
-const LeftSidebar = () => {
+type Props = {
+	profilePic: string;
+	name: string;
+	description: string;
+};
+const LeftSidebar = ({name, description, profilePic}: Props) => {
 	return (
 		<div className='left-side-menu'>
-			<UserProfileWidget />
+			<UserProfileWidget name={name} description={description} profilePic={profilePic} />
 			<PerfectScrollbar>
 				<SideNav />
 			</PerfectScrollbar>

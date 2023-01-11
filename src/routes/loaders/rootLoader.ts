@@ -1,3 +1,4 @@
+import { NimblUser } from './../../types';
 import { redirect } from "react-router-dom";
 import { getNimblUser } from "../../utils/localStorage";
 
@@ -9,3 +10,6 @@ const rootLoader = () => {
 	return { nimblUser };
 }
 export default rootLoader;
+export type RootLoader = {
+	nimblUser: NimblUser;
+};
