@@ -13,4 +13,15 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
+  <script>
+	let env = 'LOCAL_ENV';
+	if(window.location.href.includes('dev--')){
+		env = 'DEV_ENV';
+	}else if(window.location.href.includes('unruffled-kalam-c0b4b3.netlify.app') ){
+		env = 'STG_ENV';
+	}else if (window.location.href.includes('nimbl.ai')){
+		env= 'PROD_ENV';
+	}
+	window._CURRENT_ENV_ = env;
+</script>
 </html>

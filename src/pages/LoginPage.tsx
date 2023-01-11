@@ -1,18 +1,22 @@
-import { Container, Row, Col, Card, CardBody, Collapse } from 'reactstrap';
+import { Container, Row, Col, Card, CardBody } from 'reactstrap';
 import GoogleLogin, { GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
+import Swal from 'sweetalert2';
+
 import logo from '../assets/nimblLogo.png';
 import { ADMIN_EMAIL } from '../utils/constants';
 
 const LoginPage = () => {
 	
 	const handleGoogleResponse = (googleResponse: GoogleLoginResponse | GoogleLoginResponseOffline) => {
+		console.log({googleResponse});
 		try {
 			googleResponse = googleResponse as GoogleLoginResponse;
 			if(!googleResponse?.code && googleResponse?.accessToken){
+				// console.log({googleResponse});
 				// this.props.googleLoginUser(googleResponse);
 			}
 		} catch (error) {
-			
+			Swal.fire({title: "Error login in", text: `Error, please try again ${error}`, icon: "error"});
 		}
 	}
 	return (
