@@ -15,8 +15,8 @@ const UserProfileWidget = ({
     const profilePic = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLweB8yzejCatN8TyaacHUKbIqFtsNdp-wrg&usqp=CAU';
     return <>
         <div className="media user-profile my-2 d-flex">
-            <img src={profilePic} className="avatar-sm rounded-circle mr-2" alt="Avatar" />
-            <img src={profilePic} className="avatar-xs rounded-circle mr-2" alt="Avatar" />
+            <img src={profilePic} className="avatar-sm rounded-circle me-2" alt="Avatar" />
+            <img src={profilePic} className="avatar-xs rounded-circle me-2" alt="Avatar" />
 
             <div className="media-body px-2">
                 <h6 className="pro-user-name mt-0 mb-0">David Nuñez</h6>
@@ -28,7 +28,7 @@ const UserProfileWidget = ({
                     data-toggle="dropdown"
                     tag="button"
 					// onClick={handleOpenMenu}
-                    className="btn btn-link p-0 dropdown-toggle mr-0">
+                    className="btn btn-link p-0 dropdown-toggle me-0">
                     <FeatherIcon.ChevronDown />
                 </DropdownToggle>
                 <DropdownMenu className="topbar-dropdown-menu profile-dropdown-items dropdownMenu">

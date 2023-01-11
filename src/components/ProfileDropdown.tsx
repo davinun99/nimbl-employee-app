@@ -18,18 +18,18 @@ const ProfileDropdown = ({ profilePic , menuItems, username, description }: Prop
 			<DropdownToggle
 				data-toggle="dropdown"
 				tag="a"
-				className="nav-link dropdown-toggle nav-user mr-0 mr-0"
+				className="nav-link dropdown-toggle nav-user me-0"
 				onClick={toggleDropdown} aria-expanded={dropdownIsOpen}>
 
 				<div className="media user-profile ">
 					<img src={profilePic} alt={username} className="rounded-circle align-self-center" />
 					<div className="media-body text-left">
-						<h6 className="pro-user-name ml-2 my-0">
+						<h6 className="pro-user-name ms-2 my-0">
 							<span>{username}</span>
 							<span className="pro-user-desc text-muted d-block mt-1">{description} </span>
 						</h6>
 					</div>
-					<ChevronDown className="ml-2 align-self-center"></ChevronDown>
+					<ChevronDown className="ms-2 align-self-center"></ChevronDown>
 				</div>
 			</DropdownToggle>
 			<DropdownMenu end className="topbar-dropdown-menu profile-dropdown-items">
@@ -39,7 +39,7 @@ const ProfileDropdown = ({ profilePic , menuItems, username, description }: Prop
 						return <Fragment key={i + "-profile-menu"}>
 							{item.hasDivider ? <DropdownItem divider /> : null}
 						<Link to={item.redirectTo} className="dropdown-item notify-item">
-								<Icon className="icon-dual icon-xs mr-2"></Icon>
+								<Icon className="icon-dual icon-xs me-2"></Icon>
 								<span>{item.label}</span>
 							</Link>
 						</Fragment>
