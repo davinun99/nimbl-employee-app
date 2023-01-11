@@ -2,11 +2,10 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { CustomAxiosError } from './../types';
 
-const currentEnv = window._CURRENT_ENV_;
+const currentEnv = import.meta.env.PROD ? 'PROD_ENV': 'DEV_ENV';
+
 let backendUrl = import.meta.env.VITE_BACKEND_URL_LOCAL;
-if( currentEnv === 'DEV_ENV' ){
-    backendUrl = import.meta.env.VITE_BACKEND_URL_STG;
-}else if(currentEnv === 'PROD_ENV' || currentEnv === 'STG_ENV'){
+if(currentEnv === 'PROD_ENV'){
     backendUrl = import.meta.env.VITE_BACKEND_URL_PROD;
 }
 
