@@ -17,46 +17,29 @@ export type AuthData = {
 	}
 };
 export type CustomAxiosError = AxiosError & { isProcessed?: boolean};
-
+type Recruiter = {
+	recruiter_type: string;
+	recruiter_type_id: number;
+	restrict_client_info: boolean;
+};
+type KPI = {
+	kpi_frequency: string;
+	kpi_goal_value: number;
+	kpi_id: number;
+	kpi_level: number;
+	kpi_name: string;
+};
 export type NimblUser = {
     city: string;
     kpi_level: number;
     profile_photo: string;
     recruiter_email: string;
-    recruiter_first_name: string,
-    recruiter_id: 10,
-    recruiter_last_name: string,
-    recruiter_type_id: 1,
-    user_id: 11,
-    recruiter_type: [
-        {
-            "recruiter_type": "Admin",
-            "recruiter_type_id": 1,
-            "restrict_client_info": false
-        }
-    ],
-    kpi: [
-        {
-            "kpi_frequency": "Monthly",
-            "kpi_goal_value": 16,
-            "kpi_id": 3,
-            "kpi_level": 1,
-            "kpi_name": "Calls booked"
-        },
-        {
-            "kpi_frequency": "Monthly",
-            "kpi_goal_value": 150,
-            "kpi_id": 2,
-            "kpi_level": 1,
-            "kpi_name": "Connections made"
-        },
-        {
-            "kpi_frequency": "Monthly",
-            "kpi_goal_value": 500,
-            "kpi_id": 1,
-            "kpi_level": 1,
-            "kpi_name": "No of connection requests sent"
-        }
-    ],
+    recruiter_first_name: string;
+    recruiter_id: number;
+    recruiter_last_name: string;
+    recruiter_type_id: number;
+    user_id: number;
+    recruiter_type: Recruiter[],
+    kpi: KPI[],
     role: string;
 }

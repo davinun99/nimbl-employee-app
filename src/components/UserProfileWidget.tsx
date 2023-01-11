@@ -1,11 +1,17 @@
 import { UncontrolledDropdown, DropdownMenu, DropdownToggle, DropdownItem } from 'reactstrap';
 import * as FeatherIcon from 'react-feather';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axiosClient from '../utils/axios';
 
 const UserProfileWidget = ({ 
 	// user, role, nimblUser, showRightSidebar
 }) => {
-    
+	const navigate = useNavigate();
+    const handleLogout = () => {
+		localStorage.clear();
+		axiosClient.defaults.headers.common.Authorization = '';
+		navigate('/login');
+	}
     const profilePic = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLweB8yzejCatN8TyaacHUKbIqFtsNdp-wrg&usqp=CAU';
     return <>
         <div className="media user-profile my-2 d-flex">
@@ -27,18 +33,18 @@ const UserProfileWidget = ({
                 </DropdownToggle>
                 <DropdownMenu className="topbar-dropdown-menu profile-dropdown-items dropdownMenu">
                     <Link to="/" className="dropdown-item notify-item">
-                        <FeatherIcon.User className="icon-dual icon-xs mr-2" />
+                        <FeatherIcon.User className="icon-dual icon-xs me-2" />
                         <span>My Account</span>
                     </Link>
                     <Link to="/" className="dropdown-item notify-item">
-                        <FeatherIcon.HelpCircle className="icon-dual icon-xs mr-2" />
+                        <FeatherIcon.HelpCircle className="icon-dual icon-xs me-2" />
                         <span>Support</span>
                     </Link>
                     <DropdownItem divider />
-                    <Link to="/account/logout" className="dropdown-item notify-item">
-                        <FeatherIcon.LogOut className="icon-dual icon-xs mr-2" />
+                    <span onClick={handleLogout} className="dropdown-item notify-item">
+                        <FeatherIcon.LogOut className="icon-dual icon-xs me-2" />
                         <span>Logout</span>
-                    </Link>
+                    </span>
                 </DropdownMenu>
             </UncontrolledDropdown>
         </div>

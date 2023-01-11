@@ -4,20 +4,32 @@ import Swal from 'sweetalert2';
 
 import logo from '../assets/nimblLogo.png';
 import { ADMIN_EMAIL } from '../utils/constants';
+import { saveGoogleAuthInfo, saveUserInfo } from '../utils/localStorage';
+import axiosClient from '../utils/axios';
+import LoaderCmp from '../components/LoaderCmp';
+import { useState } from 'react';
+import { NimblUser } from '../types';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
-	
-	const handleGoogleResponse = (googleResponse: GoogleLoginResponse | GoogleLoginResponseOffline) => {
-		console.log({googleResponse});
+	const [isLoading, setIsLoading] = useState(false);
+	const navigate = useNavigate();
+	const handleGoogleResponse = async (googleResponse: GoogleLoginResponse | GoogleLoginResponseOffline) => {
+		setIsLoading(true);
 		try {
 			googleResponse = googleResponse as GoogleLoginResponse;
 			if(!googleResponse?.code && googleResponse?.accessToken){
-				// console.log({googleResponse});
-				// this.props.googleLoginUser(googleResponse);
+				saveGoogleAuthInfo(googleResponse);
+				const token = googleResponse.accessToken;
+				axiosClient.defaults.headers.common.Authorization = `Bearer ${token}`;
+				const user = await axiosClient.get<NimblUser>('/user');
+				saveUserInfo(user.data);
+				navigate('/');
 			}
 		} catch (error) {
-			Swal.fire({title: "Error login in", text: `Error, please try again ${error}`, icon: "error"});
+			Swal.fire({title: "Error", text: `Error while login in, please try again ${error}`, icon: "error"});
 		}
+		setIsLoading(false);
 	}
 	return (
 		<div className="account-pages my-5">
@@ -51,6 +63,7 @@ const LoginPage = () => {
 											</Col>
 										</Row>
 										<Row className='my-3 justify-content-center'>
+											{isLoading && <LoaderCmp/>}
 											<Col sm={12} md={10} className="d-flex justify-content-center">
 												<GoogleLogin
 													clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}
