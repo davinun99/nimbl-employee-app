@@ -4,7 +4,9 @@ import ErrorPage from "../pages/ErrorPage";
 import LoginPage from "../pages/LoginPage";
 import ProfilePage from "../pages/ProfilePage";
 import RootPage from "../pages/RootPage";
+import ExpensesPage from "../pages/ExpensesPage";
 import rootLoader from "./loaders/rootLoader";
+import expenseLoader from "./loaders/expenseLoader";
 
 export const routes: RouteObject[] = [
 	{
@@ -21,6 +23,11 @@ export const routes: RouteObject[] = [
 			{
 				path: "/profile",
 				element: <ProfilePage />
+			},
+			{
+				path: "/expenses",
+				element: <ExpensesPage />,
+				loader: expenseLoader,
 			}
 		]
 	},

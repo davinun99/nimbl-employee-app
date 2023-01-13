@@ -48,3 +48,39 @@ export type SidebarNavItem = {
 	icon: React.ElementType;
 	name: string;
 };
+export type PayMethod = {
+	card_alias: string,
+	card_number: number;
+	is_default_card: true,
+	nimbl_user_id: number;
+	payment_method_id: number;
+};
+export type ExpenseCategory = {
+	expense_category_description: string
+	expense_category_id: number;
+	external_reference: string;
+};
+type ExpenseDocument = {
+	created_date: string;
+	expense_document_id: number;
+	filename: string;
+	s3_bucket: string;
+	s3_document_key: string;
+};
+export type Expense = {
+	amount: number;
+	expense_category_id: number | null;
+	expense_currency: string;
+	expense_date: string;
+	expense_description: string;
+	expense_document_id: string | null;
+	expense_id: number;
+	expense_pay_date: string;
+	expense_pay_method_id: number;
+	is_reconciled: boolean;
+	nimbl_user_id: number;
+	source: string;
+	expense_payment_method?: PayMethod | null;
+	expense_category?: ExpenseCategory | null;
+	expense_document?: ExpenseDocument | null;
+};
