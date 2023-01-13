@@ -42,4 +42,9 @@ export type NimblUser = {
     recruiter_type: Recruiter[],
     kpi: KPI[],
     role: string;
-}
+};
+export type SidebarNavItem = {
+	path: string;
+	icon: React.ElementType;
+	name: string;
+};

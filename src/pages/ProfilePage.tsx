@@ -39,14 +39,14 @@ const ProfilePage = ({}: Props) => {
 										href="#"
 										className={classNames({ active: activeTab === '1' })}
 										onClick={() => { toggleTab('1'); }}
-									>Expences</NavLink>
+									>My invoices</NavLink>
 								</NavItem>
 								<NavItem>
 									<NavLink
 										href="#"
 										className={classNames({ active: activeTab === '2' })}
 										onClick={() => { toggleTab('2'); }}
-									>My invoices</NavLink>
+									>Expences</NavLink>
 								</NavItem>
 							</Nav>
 							<TabContent activeTab={activeTab}>
