@@ -8,14 +8,13 @@ import ExpensesGrid from "../components/ExpenseGrid";
 
 const ExpensesPage = () => {
 	const expenseData = useLoaderData() as ExpenseLoader;
-	const handleRefresh = () => {};
 	return (
 		<>
-			<PageTitle handleRefresh={handleRefresh} title={'Expenses'}/>
+			<PageTitle title={'Expenses'}/>
 			<Row>
 				<Col lg={12}>
 					<Card>
-						<CardBody>
+						<CardBody className="expenses-grid-cardbody">
 							<Suspense fallback={<LoaderCmp />}>
 								<Await resolve={expenseData.expenses}
 									errorElement={<Alert color="danger">Error loading expenses</Alert>}
