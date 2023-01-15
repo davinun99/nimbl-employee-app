@@ -59,7 +59,7 @@ const DefaultGrid = <T extends object>({data, columns}: DefaultGridProps<T>) => 
 				))}
 			</tbody>
 			<tfoot>
-				{tableInstance.getFooterGroups().map(group => (
+				{/* {tableInstance.getFooterGroups().map(group => (
 					<tr key={group.id}>
 						{group.headers.map(header => (
 							<th key={header.id}>
@@ -70,7 +70,7 @@ const DefaultGrid = <T extends object>({data, columns}: DefaultGridProps<T>) => 
 							</th>
 						))}
 					</tr>
-				))}
+				))} */}
 			</tfoot>
 		</table>
 	);

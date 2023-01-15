@@ -7,6 +7,8 @@ import RootPage from "../pages/RootPage";
 import ExpensesPage from "../pages/ExpensesPage";
 import rootLoader from "./loaders/rootLoader";
 import expenseLoader from "./loaders/expenseLoader";
+import invoiceLoader from "./loaders/invoiceLoader";
+import InvoicesPage from "../pages/InvoicesPage";
 
 export const routes: RouteObject[] = [
 	{
@@ -28,6 +30,11 @@ export const routes: RouteObject[] = [
 				path: "/expenses",
 				element: <ExpensesPage />,
 				loader: expenseLoader,
+			},
+			{
+				path: "/invoices",
+				element: <InvoicesPage />,
+				loader: invoiceLoader,
 			}
 		]
 	},

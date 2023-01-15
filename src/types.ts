@@ -7,17 +7,8 @@ export type ProfileMenuItem = {
 	redirectTo: string;
 	hasDivider?: boolean;
 };
-export type AuthData = {
-	nimbl_user: {
-		user_id: number,
-		first_name: string,
-		last_name: string,
-		email: string,
-		user_type_id: number
-	}
-};
 export type CustomAxiosError = AxiosError & { isProcessed?: boolean};
-type Recruiter = {
+type RecruiterType = {
 	recruiter_type: string;
 	recruiter_type_id: number;
 	restrict_client_info: boolean;
@@ -39,7 +30,7 @@ export type NimblUser = {
     recruiter_last_name: string;
     recruiter_type_id: number;
     user_id: number;
-    recruiter_type: Recruiter[],
+    recruiter_type: RecruiterType[],
     kpi: KPI[],
     role: string;
 };
@@ -84,3 +75,22 @@ export type Expense = {
 	expense_category?: ExpenseCategory | null;
 	expense_document?: ExpenseDocument | null;
 };
+type EmployeeDocument = {
+	created_date: string;
+	document_address: string;
+	employee_document_id: number;
+	filename: string;
+	recruiter_id: number;
+	s3_bucket: string;
+	s3_document_key: string;
+};
+export type Invoice = {
+	amount: number;
+	date: string;
+	employee_document_id: number;
+	employee_month_id: number;
+	recruiter_id: number;
+	status: string;
+	employee_document: EmployeeDocument;
+	recruiter: NimblUser;
+}

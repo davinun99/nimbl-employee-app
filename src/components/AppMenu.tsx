@@ -18,6 +18,11 @@ const routes: SidebarNavItem[] = [
 		path: '/expenses',
 		name: 'Expenses',
 		icon: Feather.DollarSign,
+	},
+	{
+		path: '/invoices',
+		name: 'Invoices',
+		icon: Feather.Calendar,
 	}
 ];
 const AppMenu = ({}: Props) => {
