@@ -16,10 +16,10 @@ const axiosClient = axios.create({
 const refreshTokenIntenceptor = async (error: CustomAxiosError) => {
 	// If the response is a 401, redirect to login
 	if (error?.response?.status === 401) {
+		error.isProcessed = true;
 		Swal.fire({ title: "Error", text: "Your session has ended. Please log in again", icon:"error" }).then(() =>{
 			localStorage.clear();
 			window.location.href = "/login";
-			error.isProcessed = true;
 		});
 		return Promise.resolve(null);
 	}
