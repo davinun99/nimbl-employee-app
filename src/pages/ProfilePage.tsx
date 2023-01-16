@@ -1,64 +1,38 @@
-import { Row, Col, Card, CardBody, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
-import classNames from 'classnames';
+import { Row, Col, Alert, Card, CardBody } from 'reactstrap';
 import PageTitle from "../components/PageTitle";
 import UserBox from '../components/UserBox';
-import { useState } from 'react';
-import { useRouteLoaderData } from 'react-router-dom';
-import { RootLoader } from '../routes/loaders/rootLoader';
+import { Await, useLoaderData, useRouteLoaderData } from 'react-router-dom';
+import { RecruiterLoader } from '../routes/loaders/recruiterLoader';
+import { Suspense } from 'react';
+import LoaderCmp from '../components/LoaderCmp';
+import { NimblUser } from '../types';
 
 type Props = {
 
 };
 
+const Loader = () => (
+	<Card>
+		<CardBody className='min-height-100px'>
+			<LoaderCmp />
+		</CardBody>
+	</Card>
+);
 const ProfilePage = ({}: Props) => {
-	const [activeTab, setActiveTab] = useState('1');
-	const { nimblUser } = useRouteLoaderData('MainLayout') as RootLoader;
-	const toggleTab = (tab: string) => {
-		if(activeTab !== tab){
-			setActiveTab(tab);
-		}
-	};
-
-	const handleRefresh = () => {}
-
+	const loaderData = useLoaderData() as RecruiterLoader;
 	return (
 		<>
-			<PageTitle handleRefresh={handleRefresh} title={'My Profile'}/>
+			<PageTitle title={'My Profile'}/>
 			<Row>
-				<Col lg={3}>
+				<Col lg={6}>
 					{/* User information */}
-					<UserBox nimblUser={nimblUser} />
-				</Col>
-
-				<Col lg={9}>
-					<Card>
-						<CardBody>
-							<Nav className="nav nav-pills navtab-bg nav-justified">
-								<NavItem>
-									<NavLink
-										href="#"
-										className={classNames({ active: activeTab === '1' })}
-										onClick={() => { toggleTab('1'); }}
-									>My invoices</NavLink>
-								</NavItem>
-								<NavItem>
-									<NavLink
-										href="#"
-										className={classNames({ active: activeTab === '2' })}
-										onClick={() => { toggleTab('2'); }}
-									>Expences</NavLink>
-								</NavItem>
-							</Nav>
-							<TabContent activeTab={activeTab}>
-								<TabPane tabId="1">
-									{/* <Activities /> */}
-								</TabPane>
-								<TabPane tabId="2">
-									{/* <Messages /> */}
-								</TabPane>
-							</TabContent>
-						</CardBody>
-					</Card>
+					<Suspense fallback={<Loader />}>
+						<Await resolve={loaderData.recruiter}
+							errorElement={<Alert color="danger">Error loading expenses</Alert>}
+						>
+							{(recruiter: NimblUser) => <UserBox nimblUser={recruiter} />}
+						</Await>
+					</Suspense>
 				</Col>
 			</Row>
 		</>
