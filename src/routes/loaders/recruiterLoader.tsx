@@ -2,7 +2,7 @@ import { ActionFunctionArgs, defer, redirect } from "react-router-dom";
 import { NimblUser } from "../../types";
 import axiosClient from "../../utils/axios";
 import { handleError } from "../../utils/errorUtils";
-import { getNimblUser } from "../../utils/localStorage";
+import { getNimblUser, saveUserInfo } from "../../utils/localStorage";
 
 const updateRecruiterPromise = async(formData: FormData) => {
 	const id = formData.get('id');
@@ -19,7 +19,15 @@ const updateRecruiterPromise = async(formData: FormData) => {
 const recruiterPromise = async (id: number) => {
 	try {
 		const resp = await axiosClient.get<NimblUser[]>(`/recruiters?recruiter_id=${id}`);
-		return resp?.data[0] || null;
+		const editedUser = resp?.data[0] || null;
+		const currentUser = getNimblUser() || {} as NimblUser;
+		if(editedUser){
+			saveUserInfo({
+				...currentUser,
+				...editedUser,
+			});
+		}
+		return editedUser;
 	} catch (error: any) {
 		handleError(error, "Error getting your profile info");
 	}
