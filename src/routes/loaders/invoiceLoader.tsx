@@ -27,7 +27,7 @@ const updateInvoicePromise = async(formData: FormData) => {
 	formData.delete('id');
 	try {
 		const options = { headers:{ 'Content-Type': 'multipart/form-data' } };
-        const req = await axiosClient.put(`employeemonth/${id}/invoice`, formData, options );
+        const req = await axiosClient.put(`/employeemonth/${id}/invoice`, formData, options );
 		return req.data;
 	} catch (error) {
 		handleError(error, "Error saving your document");

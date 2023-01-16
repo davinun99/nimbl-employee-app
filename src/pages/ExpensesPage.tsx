@@ -5,6 +5,7 @@ import PageTitle from "../components/PageTitle";
 import { ExpenseLoader } from "../routes/loaders/expenseLoader";
 import LoaderCmp from "../components/LoaderCmp";
 import ExpensesGrid from "../components/ExpenseGrid";
+import { Expense } from "../types";
 
 const ExpensesPage = () => {
 	const expenseData = useLoaderData() as ExpenseLoader;
@@ -14,12 +15,12 @@ const ExpensesPage = () => {
 			<Row>
 				<Col lg={12}>
 					<Card>
-						<CardBody className="expenses-grid-cardbody">
+						<CardBody className="min-height-100px">
 							<Suspense fallback={<LoaderCmp />}>
 								<Await resolve={expenseData.expenses}
 									errorElement={<Alert color="danger">Error loading expenses</Alert>}
 								>
-									{expenses => <ExpensesGrid expenses={expenses} />}
+									{(expenses: Expense[]) => <ExpensesGrid expenses={expenses} />}
 								</Await>
 							</Suspense>
 						</CardBody>
