@@ -14,7 +14,7 @@ const DefaultGrid = <T extends object>({data, columns}: DefaultGridProps<T>) => 
 		onSortingChange: setSorting,
 		getCoreRowModel: getCoreRowModel(),
 		getSortedRowModel: getSortedRowModel(),
-		debugTable: true
+		// debugTable: true
 	});
 	return (
 		<table className="table expenses-grid">

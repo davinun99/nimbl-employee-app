@@ -2,30 +2,14 @@ import { Expense, NimblUser } from '../../types';
 import { defer, redirect } from "react-router-dom";
 import { getNimblUser } from "../../utils/localStorage";
 import axiosClient from '../../utils/axios';
-import { Store } from 'react-notifications-component';
-import ErrorCmp from '../../components/ErrorCmp';
+import { handleError } from '../../utils/errorUtils';
 
 const expensesPromise = async () => {
 	try {
 		const resp = await axiosClient.get<Expense[]>(`/expenses`);
 		return resp?.data || [];
 	} catch (error: any) {
-		if (!error?.isProcessed) {
-			Store.addNotification({
-				title: "Error",
-				message: <ErrorCmp error={error}/>,
-				type: "danger",
-				insert: "top",
-				container: "top-right",
-				dismiss: {
-					duration: 3000,
-					onScreen: true,
-					pauseOnHover: true,
-					click: false,
-				}
-			});
-		}
-		return [];	
+		handleError(error, "Error getting your expenses");
 	}
 }
 const expenseLoader = async () => {
