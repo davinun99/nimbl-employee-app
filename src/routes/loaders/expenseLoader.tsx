@@ -19,8 +19,7 @@ const expenseLoader = async () => {
 		return redirect('/login');
 	}
 	let expenses = expensesPromise();
-	let error = '';
-	return defer({ nimblUser, error, expenses });
+	return defer({ nimblUser, expenses });
 }
 export default expenseLoader;
 
