@@ -34,6 +34,13 @@ export type NimblUser = {
     kpi: KPI[],
     role: string;
 };
+export type User = {
+	email: string;
+	first_name: string;
+	last_name: string;
+	user_id: number;
+	user_type_id: number;
+};
 export type SidebarNavItem = {
 	path: string;
 	icon: React.ElementType;
@@ -45,6 +52,7 @@ export type PayMethod = {
 	is_default_card: true,
 	nimbl_user_id: number;
 	payment_method_id: number;
+	nimbl_user: User;
 };
 export type ExpenseCategory = {
 	expense_category_description: string
