@@ -1,7 +1,6 @@
 import { Suspense } from "react";
-import { Await, useLoaderData } from "react-router-dom";
-import { Alert, Card, CardBody, Col, Row } from "reactstrap";
-import PageTitle from "../components/PageTitle";
+import { Await, useLoaderData, useNavigate } from "react-router-dom";
+import { Alert, Button, Card, CardBody, Col, Row } from "reactstrap";
 import { ExpenseLoader } from "../routes/loaders/expenseLoader";
 import LoaderCmp from "../components/LoaderCmp";
 import ExpensesGrid from "../components/ExpenseGrid";
@@ -9,9 +8,15 @@ import { Expense } from "../types";
 
 const ExpensesPage = () => {
 	const expenseData = useLoaderData() as ExpenseLoader;
+	const navigate = useNavigate();
 	return (
 		<>
-			<PageTitle title={'Expenses'}/>
+			<Row className="page-title align-items-center">
+				<Col xs={12} className="d-flex align-items-center">
+					<h4 className="mb-1 mt-0 me-3">Expenses</h4>
+					<Button onClick={ () => navigate('/expenses/new')}>Create expense</Button>
+				</Col>
+			</Row>
 			<Row>
 				<Col lg={12}>
 					<Card>
