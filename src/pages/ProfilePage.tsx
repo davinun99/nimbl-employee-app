@@ -1,23 +1,14 @@
-import { Row, Col, Alert, Card, CardBody } from 'reactstrap';
+import { Row, Col, Alert } from 'reactstrap';
 import PageTitle from "../components/PageTitle";
 import UserBox from '../components/UserBox';
-import { Await, useLoaderData, useRouteLoaderData } from 'react-router-dom';
+import { Await, useLoaderData } from 'react-router-dom';
 import { RecruiterLoader } from '../routes/loaders/recruiterLoader';
 import { Suspense } from 'react';
-import LoaderCmp from '../components/LoaderCmp';
 import { NimblUser } from '../types';
+import LoaderInCard from '../components/LoaderInCard';
 
-type Props = {
+type Props = {};
 
-};
-
-const Loader = () => (
-	<Card>
-		<CardBody className='min-height-100px'>
-			<LoaderCmp />
-		</CardBody>
-	</Card>
-);
 const ProfilePage = ({}: Props) => {
 	const loaderData = useLoaderData() as RecruiterLoader;
 	return (
@@ -26,7 +17,7 @@ const ProfilePage = ({}: Props) => {
 			<Row>
 				<Col lg={6}>
 					{/* User information */}
-					<Suspense fallback={<Loader />}>
+					<Suspense fallback={<LoaderInCard />}>
 						<Await resolve={loaderData.recruiter}
 							errorElement={<Alert color="danger">Error loading expenses</Alert>}
 						>
