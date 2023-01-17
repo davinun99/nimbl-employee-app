@@ -10,6 +10,7 @@ const expensesPromise = async () => {
 		return resp?.data || [];
 	} catch (error: any) {
 		handleError(error, "Error getting your expenses");
+		return [];
 	}
 }
 const expenseLoader = async () => {
