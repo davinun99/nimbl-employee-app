@@ -1,4 +1,5 @@
-import axios from 'axios';
+import { handleError } from './errorUtils';
+import axios, { AxiosRequestConfig } from 'axios';
 import Swal from 'sweetalert2';
 import { CustomAxiosError } from './../types';
 
@@ -36,3 +37,24 @@ axiosClient.interceptors.response.use(
 	refreshTokenIntenceptor
 );
 export default axiosClient;
+
+export const getListFromEndpoint = async <T extends Object>(endpoint: string, errorTitle: string) => {
+	try {
+		const resp = await axiosClient.get<T[]>(endpoint);
+		return resp?.data || [];
+	} catch (error: any) {
+		handleError(error, errorTitle);
+		return [];
+	}
+}
+export const postDataToEndpoint = async<T extends Object>(
+	endpoint: string, data: any , errorTitle: string, options?: AxiosRequestConfig
+) => {
+	try {
+        const req = await axiosClient.post<T>(endpoint, data, options);
+		return req.data;
+	} catch (error) {
+		handleError(error, errorTitle);
+		return null;
+	}
+}
