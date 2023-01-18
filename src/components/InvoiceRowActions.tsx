@@ -34,26 +34,24 @@ const InvoiceRowActions = ({ invoice }: Props) => {
 		fetcher.submit(formData, {method: 'put', encType: 'multipart/form-data', action: `/invoices`});
 	};
 	const shouldDisplaySpinner = fetcher.state !== 'idle' || isLoading;
+	if(shouldDisplaySpinner){
+		return <Spinner size="sm"/>
+	}
 	return (
 		invoice.employee_document_id ? 
 		<span className="actionBtnSpan" title="View invoice" onClick={handleOpenInvoice}>
 			<FileText width={20}/>
-		</span>:
-			<>
-				{shouldDisplaySpinner ? <Spinner size="sm" /> 
-				:
-					<span className="actionBtnSpan" title="Upload invoice">
-						<Dropzone maxFiles={1} onDrop={handleDrop}>
-							{({ getRootProps, getInputProps }) => (
-								<span className="needsclick" {...getRootProps()}>
-									<input name="files" {...getInputProps()} />
-									<Upload width={20}/>
-								</span>
-							)}
-						</Dropzone>
+		</span> :
+		<span className="actionBtnSpan" title="Upload invoice">
+			<Dropzone maxFiles={1} onDrop={handleDrop}>
+				{({ getRootProps, getInputProps }) => (
+					<span className="needsclick" {...getRootProps()}>
+						<input name="files" {...getInputProps()} />
+						<Upload width={20}/>
 					</span>
-				}
-			</>
+				)}
+			</Dropzone>
+		</span>
 	);
 };
 
