@@ -101,4 +101,13 @@ export type Invoice = {
 	status: string;
 	employee_document: EmployeeDocument;
 	recruiter: NimblUser;
-}
+};
+export type ExpenseToCreate = {
+	expense_description: string;
+	expense_currency: string;
+	expense_pay_method_id: number;
+	amount: number;
+	expense_category_id: number;
+	expense_date: string;
+	files: File | null;
+};

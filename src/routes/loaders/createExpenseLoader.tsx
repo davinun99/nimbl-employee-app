@@ -26,5 +26,6 @@ export type CreateExpenseLoader = {
 export const createExpenseAction = async ({ request, params }: ActionFunctionArgs) => {
 	const formData = await request.formData();
 	const options = { headers:{ 'Content-Type': 'multipart/form-data' } };
-	return postDataToEndpoint('expense', formData, "Error creating expense", options);
+	await postDataToEndpoint('/expense/withFile', formData, "Error creating expense", options);
+	return redirect('/expenses');
 }

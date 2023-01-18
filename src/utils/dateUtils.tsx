@@ -1,4 +1,5 @@
 import { CellContext } from "@tanstack/react-table";
+import { Calendar } from "react-feather";
 
 /**
  * It takes a string in the format of "YYYY-MM-DD" and returns a Date object
@@ -19,5 +20,9 @@ export const getDateFromStr = (strDate: string) => {
 	}
 };
 export const dateCellToLocale = (cell: CellContext<any, any>) => {
-	return typeof cell.getValue() === 'string' ? getDateFromStr(cell.getValue())?.toLocaleDateString() : '';
+	const str = typeof cell.getValue() === 'string' ? getDateFromStr(cell.getValue())?.toLocaleDateString() : '';
+	return <span className="d-flex align-items-center">
+		<Calendar size={15} className="me-1"/>
+		<span>{str}</span>
+	</span>;
 }
