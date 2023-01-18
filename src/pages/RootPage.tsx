@@ -1,12 +1,16 @@
+
+import { useState } from "react";
+import { Navigate, useRouteLoaderData } from "react-router-dom";
 import { Card, CardBody, Col, Nav, NavItem, NavLink, Row, TabContent, TabPane } from "reactstrap";
 import classNames from 'classnames';
+
 import PageTitle from "../components/PageTitle";
 import UserBox from "../components/UserBox";
-import { useState } from "react";
-import { useRouteLoaderData } from "react-router-dom";
 import { RootLoader } from "../routes/loaders/rootLoader";
 
-const RootPage = () => {
+const currentRootPage = () => <Navigate to="/invoices" />;
+
+export const RootPage = () => {
 	const handleRefresh = () => {};
 	const [activeTab, setActiveTab] = useState('1');
 	const { nimblUser } = useRouteLoaderData('MainLayout') as RootLoader;
@@ -59,4 +63,4 @@ const RootPage = () => {
 	);
 };
 
-export default RootPage;
+export default currentRootPage;

@@ -28,7 +28,7 @@ const InvoiceRowActions = ({ invoice }: Props) => {
 		const formData = new FormData();
         formData.append('amount', `${invoice.amount || 0}`);
 		formData.append('date', invoice.date);
-        formData.append('status', invoice.status);
+        formData.append('status', 'Not paid');
 		formData.append('files', files[0]);
 		formData.append('id', `${invoice.employee_month_id}`);
 		fetcher.submit(formData, {method: 'put', encType: 'multipart/form-data', action: `/invoices`});
