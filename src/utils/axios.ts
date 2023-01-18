@@ -58,3 +58,14 @@ export const postDataToEndpoint = async<T extends Object>(
 		return null;
 	}
 }
+export const putDataToEndpoint = async<T extends Object>(
+	endpoint: string, data: any , errorTitle: string, options?: AxiosRequestConfig
+) => {
+	try {
+		const req = await axiosClient.put<T>(endpoint, data, options );
+		return req.data;
+	} catch (error) {
+		handleError(error, errorTitle);
+		return null;
+	}
+}
