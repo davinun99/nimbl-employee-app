@@ -8,12 +8,13 @@ type Props = {
 	nimblUser: NimblUser;
 }
 const UserBox = ({ nimblUser }: Props) => {
+
 	const [isOpen, setIsOpen] = useState(false);
 	const toggleModal = () => setIsOpen(!isOpen);
 	const fullName = `${nimblUser.recruiter_first_name} ${nimblUser.recruiter_last_name}`;
     return (
 		<>
-			<EditRecruiterModal recruiter={nimblUser} isOpen={isOpen} toggleModal={toggleModal} />		
+			<EditRecruiterModal recruiter={nimblUser} isOpen={isOpen} toggleModal={toggleModal} />
 			<Card className="">
 				<CardBody className="profile-user-box">
 					<Row>

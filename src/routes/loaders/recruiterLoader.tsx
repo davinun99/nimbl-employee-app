@@ -3,17 +3,21 @@ import { NimblUser } from "../../types";
 import { getListFromEndpoint, putDataToEndpoint } from "../../utils/axios";
 import { getNimblUser, saveUserInfo } from "../../utils/localStorage";
 
-const recruiterPromise = async (id: number) => {
-	let recruiters = await getListFromEndpoint<NimblUser>(`/recruiters?recruiter_id=${id}`, 'Error getting your profile info');
-	const editedUser = recruiters[0] || null;
+const updateUserInStorage = (updatedUser: NimblUser | null) => {
 	const currentUser = getNimblUser() || {} as NimblUser;
-	if(editedUser){
+	if(updatedUser){
 		saveUserInfo({
 			...currentUser,
-			...editedUser,
+			...updatedUser,
 		});
 	}
-	return editedUser;
+}
+
+const recruiterPromise = async (id: number) => {
+	let recruiters = await getListFromEndpoint<NimblUser>(`/recruiters?recruiter_id=${id}`, 'Error getting your profile info');
+	const updatedUser = recruiters[0] || null;
+	updateUserInStorage(updatedUser);
+	return updatedUser;
 }
 const recruiterLoader = async () => {
 	const nimblUser = getNimblUser();
@@ -34,6 +38,7 @@ export const editRecruiterAction = async ({ request, params }: ActionFunctionArg
 	const id = formData.get('id');
 	formData.delete('id');
 	const data = Object.fromEntries(formData);
-	const recruiter = await putDataToEndpoint(`/recruiter/${id}`, data, "Error updating your profile");
-	return recruiter;
+	const recruiter = await putDataToEndpoint<NimblUser>(`/recruiter/${id}`, data, "Error updating your profile");
+	updateUserInStorage(recruiter);
+	return redirect('/profile');
 };

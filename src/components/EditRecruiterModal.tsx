@@ -1,31 +1,36 @@
 import { useState } from "react";
-import { Form } from "react-router-dom";
+import { Form, useFetcher } from "react-router-dom";
 import { Button, Col, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader, Row } from "reactstrap";
 import { NimblUser } from "../types";
+import LoaderCmp from "./LoaderCmp";
 
 type Props = {
-	toggleModal: () => void;
 	isOpen: boolean;
 	recruiter: NimblUser;
+	toggleModal: () => void;
 };
 
 const EditRecruiterModal = ({
-	toggleModal, isOpen,
-	recruiter,
+	isOpen, recruiter, toggleModal
 }: Props) => {
 	const [editedRecruiter, setEditedRecruiter] = useState(recruiter);
-
+	const fetcher = useFetcher();
 	const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
 		setEditedRecruiter({
 			...editedRecruiter,
 			[e.currentTarget.name]: e.currentTarget.value,
 		});
 	};
-
+	const handleFinishedEdit = () => {
+		setTimeout( () => {
+			toggleModal();
+		}, 2000);
+	}
 	return (
 		<Modal isOpen={isOpen} toggle={toggleModal}>
+			{fetcher.state !== 'idle' && <LoaderCmp />}
 			<ModalHeader toggle={toggleModal}>Edit recruiter</ModalHeader>
-			<Form method='put'>
+			<fetcher.Form method='put' onSubmit={handleFinishedEdit}>
 				<ModalBody>
 					<input name="id" value={recruiter.recruiter_id} type="hidden" />
 					<Row>
@@ -58,7 +63,7 @@ const EditRecruiterModal = ({
 				<ModalFooter>
 					<Button type="submit">Save changes</Button>
 				</ModalFooter>
-			</Form>
+			</fetcher.Form>
 		</Modal>
 	)
 }

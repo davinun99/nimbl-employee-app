@@ -1,9 +1,9 @@
+import { Suspense } from 'react';
 import { Row, Col, Alert } from 'reactstrap';
 import PageTitle from "../components/PageTitle";
 import UserBox from '../components/UserBox';
 import { Await, useLoaderData } from 'react-router-dom';
 import { RecruiterLoader } from '../routes/loaders/recruiterLoader';
-import { Suspense } from 'react';
 import { NimblUser } from '../types';
 import LoaderInCard from '../components/LoaderInCard';
 
