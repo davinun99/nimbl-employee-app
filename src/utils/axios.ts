@@ -7,8 +7,8 @@ const currentEnv = import.meta.env.PROD ? 'PROD_ENV': 'DEV_ENV';
 
 let backendUrl = import.meta.env.VITE_BACKEND_URL_LOCAL;
 if(currentEnv === 'PROD_ENV'){
-    backendUrl = import.meta.env.VITE_BACKEND_URL_STG;
-	// backendUrl = import.meta.env.VITE_BACKEND_URL_PROD;
+    // backendUrl = import.meta.env.VITE_BACKEND_URL_STG;
+	backendUrl = import.meta.env.VITE_BACKEND_URL_PROD;
 }
 
 const axiosClient = axios.create({
