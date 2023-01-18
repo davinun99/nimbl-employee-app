@@ -26,7 +26,7 @@ const InvoiceRowActions = ({ invoice }: Props) => {
     };
 	const handleDrop = (files: File[]) => {
 		const formData = new FormData();
-        formData.append('amount', `${invoice.amount}`);
+        formData.append('amount', `${invoice.amount || 0}`);
 		formData.append('date', invoice.date);
         formData.append('status', invoice.status);
 		formData.append('files', files[0]);

@@ -93,7 +93,7 @@ type EmployeeDocument = {
 	s3_document_key: string;
 };
 export type Invoice = {
-	amount: number;
+	amount: number | null;
 	date: string;
 	employee_document_id: number;
 	employee_month_id: number;

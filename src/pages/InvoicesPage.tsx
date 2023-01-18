@@ -14,10 +14,10 @@ const InvoicesPage = () => {
 			<Row>
 				<Col lg={12}>
 					<Card>
-						<CardBody className="expenses-grid-cardbody">
+						<CardBody className="min-height-100px">
 							<Suspense fallback={<LoaderCmp />}>
 								<Await resolve={expenseData.invoices}
-									errorElement={<Alert color="danger">Error loading expenses</Alert>}
+									errorElement={<Alert color="danger">Error loading invoices</Alert>}
 								>
 									{invoices => <InvoicesGrid invoices={invoices} />}
 								</Await>
