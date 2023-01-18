@@ -1,25 +1,15 @@
 import { Expense, NimblUser } from '../../types';
 import { defer, redirect } from "react-router-dom";
 import { getNimblUser } from "../../utils/localStorage";
-import axiosClient from '../../utils/axios';
-import { handleError } from '../../utils/errorUtils';
+import { getListFromEndpoint } from '../../utils/axios';
 
-const expensesPromise = async () => {
-	try {
-		const resp = await axiosClient.get<Expense[]>(`/expenses`);
-		return resp?.data || [];
-	} catch (error: any) {
-		handleError(error, "Error getting your expenses");
-	}
-}
 const expenseLoader = async () => {
 	const nimblUser = getNimblUser();
 	if(!nimblUser){
 		return redirect('/login');
 	}
-	let expenses = expensesPromise();
-	let error = '';
-	return defer({ nimblUser, error, expenses });
+	let expenses = getListFromEndpoint<Expense>('/expenses', 'Error getting your expenses');
+	return defer({ nimblUser, expenses });
 }
 export default expenseLoader;
 

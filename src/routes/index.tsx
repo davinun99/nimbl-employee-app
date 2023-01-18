@@ -10,6 +10,8 @@ import expenseLoader from "./loaders/expenseLoader";
 import invoiceLoader, { editInvoiceAction } from "./loaders/invoiceLoader";
 import InvoicesPage from "../pages/InvoicesPage";
 import recruiterLoader, { editRecruiterAction } from "./loaders/recruiterLoader";
+import CreateExpensePage from "../pages/CreateExpensePage";
+import createExpenseLoader, { createExpenseAction } from "./loaders/createExpenseLoader";
 
 export const routes: RouteObject[] = [
 	{
@@ -33,6 +35,12 @@ export const routes: RouteObject[] = [
 				path: "/expenses",
 				element: <ExpensesPage />,
 				loader: expenseLoader,
+			},
+			{
+				path: "/expenses/new",
+				element: <CreateExpensePage />,
+				loader: createExpenseLoader,
+				action: createExpenseAction,
 			},
 			{
 				path: "/invoices",

@@ -34,6 +34,13 @@ export type NimblUser = {
     kpi: KPI[],
     role: string;
 };
+export type User = {
+	email: string;
+	first_name: string;
+	last_name: string;
+	user_id: number;
+	user_type_id: number;
+};
 export type SidebarNavItem = {
 	path: string;
 	icon: React.ElementType;
@@ -45,6 +52,7 @@ export type PayMethod = {
 	is_default_card: true,
 	nimbl_user_id: number;
 	payment_method_id: number;
+	nimbl_user: User;
 };
 export type ExpenseCategory = {
 	expense_category_description: string
@@ -85,7 +93,7 @@ type EmployeeDocument = {
 	s3_document_key: string;
 };
 export type Invoice = {
-	amount: number;
+	amount: number | null;
 	date: string;
 	employee_document_id: number;
 	employee_month_id: number;
@@ -93,4 +101,13 @@ export type Invoice = {
 	status: string;
 	employee_document: EmployeeDocument;
 	recruiter: NimblUser;
-}
+};
+export type ExpenseToCreate = {
+	expense_description: string;
+	expense_currency: string;
+	expense_pay_method_id: number;
+	amount: number;
+	expense_category_id: number;
+	expense_date: string;
+	files: File | null;
+};
