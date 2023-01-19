@@ -2,6 +2,7 @@ import { ColumnDef, createColumnHelper } from "@tanstack/react-table";
 import { Expense } from "../types";
 import { dateCellToLocale } from "../utils/dateUtils";
 import DefaultGrid from "./DefaultGrid";
+import ExpenseRowActions from "./ExpenseRowActions";
 
 type Props = {
 	expenses: Expense[];
@@ -13,6 +14,11 @@ const columns:ColumnDef<Expense, any>[] = [
 	columnHelper.accessor('expense_description',{ header: 'Description', footer: props => props.column.id}),
 	columnHelper.accessor('amount',{ header: 'Amount', footer: props => props.column.id}),
 	columnHelper.accessor(row => row.expense_category?.expense_category_description,{ header: 'Category', footer: props => props.column.id}),
+	columnHelper.display({
+		id: 'actions',
+		header: 'Actions',
+		cell: props => <ExpenseRowActions expense={props.row.original}/>
+	}),
 ];
 const ExpensesGrid = ({ expenses }: Props) => {
 	return (
