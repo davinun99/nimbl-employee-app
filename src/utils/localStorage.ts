@@ -54,3 +54,13 @@ export const saveGoogleAuthInfo = (authInfo: GoogleLoginResponse) => {
 export const saveUserInfo = (nimblUser: NimblUser) => {
 	localStorage.setItem(NIMBL_USER_INFO, JSON.stringify(nimblUser));
 };
+
+export const updateUserInStorage = (updatedUser: NimblUser | null) => {
+	const currentUser = getNimblUser() || {} as NimblUser;
+	if(updatedUser){
+		saveUserInfo({
+			...currentUser,
+			...updatedUser,
+		});
+	}
+}

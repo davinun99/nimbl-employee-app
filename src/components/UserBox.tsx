@@ -1,20 +1,23 @@
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardBody, Row, Col } from 'reactstrap';
 import { NimblUser } from '../types';
-import EditRecruiterModal from './EditRecruiterModal';
 
 const profileImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqb1cpENzAUc1SnTZkgZ_cQm6IlatQBlmYjQ&usqp=CAU';
 type Props = {
 	nimblUser: NimblUser;
 }
 const UserBox = ({ nimblUser }: Props) => {
-
-	const [isOpen, setIsOpen] = useState(false);
-	const toggleModal = () => setIsOpen(!isOpen);
+	const navigate = useNavigate();
 	const fullName = `${nimblUser.recruiter_first_name} ${nimblUser.recruiter_last_name}`;
+	const handleEditClick = () => {
+		navigate('/profile/edit', {
+			state: {
+				recruiter: nimblUser
+			},
+		});
+	};
     return (
 		<>
-			<EditRecruiterModal recruiter={nimblUser} isOpen={isOpen} toggleModal={toggleModal} />
 			<Card className="">
 				<CardBody className="profile-user-box">
 					<Row>
@@ -25,7 +28,7 @@ const UserBox = ({ nimblUser }: Props) => {
 								<h5 className="mt-2 mb-0">{fullName}</h5>
 								<h6 className="text-muted font-weight-normal mt-2 mb-0">Nimbl.ai</h6>
 								<h6 className="text-muted font-weight-normal mt-1 mb-4">{nimblUser.city}</h6>
-								<button type="button" onClick={toggleModal} className="btn btn-primary btn-sm me-1">Edit</button>
+								<button type="button" onClick={handleEditClick} className="btn btn-primary btn-sm me-1">Edit</button>
 							</div>
 							<div className="mt-3 pt-2 border-top">
 								<h4 className="mb-3 font-size-15">Contact Information</h4>

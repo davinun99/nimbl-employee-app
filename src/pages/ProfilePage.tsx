@@ -19,7 +19,7 @@ const ProfilePage = ({}: Props) => {
 					{/* User information */}
 					<Suspense fallback={<LoaderInCard />}>
 						<Await resolve={loaderData.recruiter}
-							errorElement={<Alert color="danger">Error loading expenses</Alert>}
+							errorElement={<Alert color="danger">Error loading your profile info</Alert>}
 						>
 							{(recruiter: NimblUser) => <UserBox nimblUser={recruiter} />}
 						</Await>

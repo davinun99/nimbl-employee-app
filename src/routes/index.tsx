@@ -9,9 +9,11 @@ import rootLoader from "./loaders/rootLoader";
 import expenseLoader from "./loaders/expenseLoader";
 import invoiceLoader, { editInvoiceAction } from "./loaders/invoiceLoader";
 import InvoicesPage from "../pages/InvoicesPage";
-import recruiterLoader, { editRecruiterAction } from "./loaders/recruiterLoader";
+import recruiterLoader from "./loaders/recruiterLoader";
 import CreateExpensePage from "../pages/CreateExpensePage";
 import createExpenseLoader, { createExpenseAction } from "./loaders/createExpenseLoader";
+import EditProfilePage from "../pages/EditProfilePage";
+import { editRecruiterAction } from "./loaders/editProfileLoader";
 
 export const routes: RouteObject[] = [
 	{
@@ -29,6 +31,10 @@ export const routes: RouteObject[] = [
 				path: "/profile",
 				element: <ProfilePage />,
 				loader: recruiterLoader,
+			},
+			{
+				path: "/profile/edit",
+				element: <EditProfilePage />,
 				action: editRecruiterAction,
 			},
 			{
