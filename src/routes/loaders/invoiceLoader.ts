@@ -8,7 +8,7 @@ const invoiceLoader = async () => {
 	if(!nimblUser){
 		return redirect('/login');
 	}
-	let invoices = getListFromEndpoint<Invoice>('/employeemonths', 'Error getting your invoices');
+	let invoices = getListFromEndpoint<Invoice>('/recruitermonths', 'Error getting your invoices');
 	return defer({ nimblUser, invoices });
 }
 
@@ -19,7 +19,7 @@ export const editInvoiceAction = async ({ request, params }: ActionFunctionArgs)
 	const id = formData.get('id');
 	formData.delete('id');
 	const options = { headers:{ 'Content-Type': 'multipart/form-data' } };
-	return putDataToEndpoint(`/employeemonth/${id}/invoice`, formData, 'Error saving your document' ,options);
+	return putDataToEndpoint(`/recruitermonth/${id}/invoice`, formData, 'Error saving your document' ,options);
 }
 
 export type InvoiceLoader = {

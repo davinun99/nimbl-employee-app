@@ -96,7 +96,7 @@ export type Invoice = {
 	amount: number | null;
 	date: string;
 	employee_document_id: number;
-	employee_month_id: number;
+	recruiter_month_id: number;
 	recruiter_id: number;
 	status: string;
 	employee_document: EmployeeDocument;
