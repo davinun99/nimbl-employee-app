@@ -83,10 +83,10 @@ export type Expense = {
 	expense_category?: ExpenseCategory | null;
 	expense_document?: ExpenseDocument | null;
 };
-type EmployeeDocument = {
+type RecruiterDocument = {
 	created_date: string;
 	document_address: string;
-	employee_document_id: number;
+	recruiter_document_id: number;
 	filename: string;
 	recruiter_id: number;
 	s3_bucket: string;
@@ -95,11 +95,11 @@ type EmployeeDocument = {
 export type Invoice = {
 	amount: number | null;
 	date: string;
-	employee_document_id: number;
+	recruiter_document_id: number;
 	recruiter_month_id: number;
 	recruiter_id: number;
 	status: string;
-	employee_document: EmployeeDocument;
+	recruiter_document: RecruiterDocument;
 	recruiter: NimblUser;
 };
 export type ExpenseToCreate = {

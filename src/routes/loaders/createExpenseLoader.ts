@@ -25,6 +25,7 @@ export type CreateExpenseLoader = {
 // React action logic
 export const createExpenseAction = async ({ request, params }: ActionFunctionArgs) => {
 	const formData = await request.formData();
+	formData.append('source', 'Employee Portal');
 	const options = { headers:{ 'Content-Type': 'multipart/form-data' } };
 	await postDataToEndpoint('/expense/withFile', formData, "Error creating expense", options);
 	return redirect('/expenses');

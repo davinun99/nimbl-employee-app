@@ -17,7 +17,7 @@ const InvoiceRowActions = ({ invoice }: Props) => {
 	const handleOpenInvoice = async() => {
 		setIsLoading(true);
         try {
-            const documents = await axiosClient.get(`/employee_documents?employee_document_id=${invoice.employee_document_id}`);
+            const documents = await axiosClient.get(`/recruiterdocuments?recruiter_document_id=${invoice.recruiter_document_id}`);
             window.open( documents.data[0].document_address, '_blank' );
         } catch (error) {
             handleError(error, "Error getting invoice document");
@@ -38,7 +38,7 @@ const InvoiceRowActions = ({ invoice }: Props) => {
 		return <Spinner size="sm"/>
 	}
 	return (
-		invoice.employee_document_id ? 
+		invoice.recruiter_document_id ? 
 		<span className="actionBtnSpan" title="View invoice" onClick={handleOpenInvoice}>
 			<FileText width={20}/>
 		</span> :
