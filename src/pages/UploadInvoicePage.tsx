@@ -15,7 +15,7 @@ const UploadInvoicePage = () => {
 				<Col lg={12}>
 					<Suspense fallback={<LoaderInCard />}>
 						<Await resolve={loaderData.invoice}
-							errorElement={<Alert color="danger">Error loading categories and cards</Alert>}
+							errorElement={<Alert color="danger">Error loading your invoice</Alert>}
 						>
 							{ invoice => <UploadInvoiceForm invoice={invoice} />}
 						</Await>
