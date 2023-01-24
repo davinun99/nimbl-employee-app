@@ -8,18 +8,19 @@ import LoaderCmp from "./LoaderCmp";
 
 type Props = {
 	invoice: Invoice;
+	col: number;
 };
-const UploadInvoiceForm = ({ invoice }: Props) => {
+const UploadInvoiceForm = ({ invoice, col }: Props) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const fetcher = useFetcher();
 	return (
-		<fetcher.Form encType="multipart/form-data" method="put">
+		<fetcher.Form encType="multipart/form-data" method="put" action={`/invoice/${invoice.recruiter_month_id}`}>
 			<Card>
 				<CardBody>
 					<input type="hidden" name="date" defaultValue={invoice.date || new Date().toISOString().substring(0, 10)} />
 					{fetcher.state !== 'idle' && <LoaderCmp />}
 					<Row>
-						<Col sm={12} md={4}>
+						<Col sm={12} md={col}>
 							<FormGroup>
 								<Label htmlFor="amount">Amount</Label>
 								<Input id="amount" type="number" name="amount" defaultValue={invoice.amount || 0} required />
@@ -27,7 +28,7 @@ const UploadInvoiceForm = ({ invoice }: Props) => {
 						</Col>
 					</Row>
 					<Row>
-						<Col sm={12} md={4}>
+						<Col sm={12} md={col}>
 							<FormGroup>
 								<Label htmlFor="amount" className="mb-1">File</Label>
 								{invoice.recruiter_document_id && <h6 className="text-muted mt-0 opacity-75">This will override existing invoice</h6>}

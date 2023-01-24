@@ -17,7 +17,7 @@ const UploadInvoicePage = () => {
 						<Await resolve={loaderData.invoice}
 							errorElement={<Alert color="danger">Error loading your invoice</Alert>}
 						>
-							{ invoice => <UploadInvoiceForm invoice={invoice} />}
+							{ invoice => <UploadInvoiceForm invoice={invoice} col={4}/>}
 						</Await>
 					</Suspense>
 				</Col>
