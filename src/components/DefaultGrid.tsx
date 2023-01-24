@@ -1,11 +1,12 @@
-import { useReactTable, flexRender, getCoreRowModel, getSortedRowModel, SortingState, ColumnDef } from '@tanstack/react-table';
+import { useReactTable, flexRender, getCoreRowModel, getSortedRowModel, SortingState, ColumnDef, InitialTableState } from '@tanstack/react-table';
 import { useState } from 'react'
 
 export type DefaultGridProps<T> = {
 	data: T[];
 	columns: ColumnDef<T>[];
+	initialState?: InitialTableState;
 };
-const DefaultGrid = <T extends object>({data, columns}: DefaultGridProps<T>) => {
+const DefaultGrid = <T extends object>({data, columns, initialState}: DefaultGridProps<T>) => {
 	const [sorting, setSorting] = useState<SortingState>([])
 	const tableInstance = useReactTable({
 		data,
@@ -15,6 +16,7 @@ const DefaultGrid = <T extends object>({data, columns}: DefaultGridProps<T>) => 
 		getCoreRowModel: getCoreRowModel(),
 		getSortedRowModel: getSortedRowModel(),
 		// debugTable: true
+		initialState,
 	});
 	return (
 		<table className="table expenses-grid">
