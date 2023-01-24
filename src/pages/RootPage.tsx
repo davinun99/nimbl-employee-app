@@ -9,6 +9,7 @@ import UserBox from "../components/UserBox";
 import { RootLoader } from "../routes/loaders/rootLoader";
 import LoaderCmp from "../components/LoaderCmp";
 import InvoiceTab from "../components/InvoiceTab";
+import ExpensesTab from "../components/ExpensesTab";
 
 
 const RootPage = () => {
@@ -58,7 +59,13 @@ const RootPage = () => {
 									</Suspense>
 								</TabPane>
 								<TabPane tabId="2">
-									{/* <Messages /> */}
+									<Suspense fallback={<LoaderCmp/>}>
+										<Await resolve={loaderData.expenses}
+											errorElement={<Alert color="danger">Error loading expenses</Alert>}
+										>
+											{expenses => <ExpensesTab expenses={expenses} />}
+										</Await>
+									</Suspense>
 								</TabPane>
 							</TabContent>
 						</CardBody>

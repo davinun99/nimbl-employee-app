@@ -20,7 +20,7 @@ const columns: ColumnDef<Invoice, any>[] = [
 ];
 const InvoicesGrid = ({ invoices }: Props) => {
 	return (
-		<DefaultGrid<Invoice> data={invoices} columns={columns} initialState={{sorting: [{id: 'date', desc: true}]}}/>
+		<DefaultGrid<Invoice> data={invoices} columns={columns} initialSortingState={[{id: 'date', desc: true}]} />
 	)
 }
 
