@@ -47,6 +47,10 @@ export const getListFromEndpoint = async <T extends Object>(endpoint: string, er
 		return [];
 	}
 }
+export const getFirstRecordFromEndpoint = async <T extends Object>(endpoint: string, errorTitle: string) => {
+	const list = await getListFromEndpoint<T>(endpoint, errorTitle);
+	return list.length > 0 ? list[0] : null;
+}
 export const postDataToEndpoint = async<T extends Object>(
 	endpoint: string, data: any , errorTitle: string, options?: AxiosRequestConfig
 ) => {

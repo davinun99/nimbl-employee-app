@@ -8,12 +8,14 @@ import ExpensesPage from "../pages/ExpensesPage";
 import rootLoader from "./loaders/rootLoader";
 import expenseLoader from "./loaders/expenseLoader";
 import invoiceLoader, { editInvoiceAction } from "./loaders/invoiceLoader";
+import uploadInvoiceLoader, { editInvoiceLoaderAction } from "./loaders/uploadInvoiceLoader";
 import InvoicesPage from "../pages/InvoicesPage";
 import recruiterLoader from "./loaders/recruiterLoader";
 import CreateExpensePage from "../pages/CreateExpensePage";
 import createExpenseLoader, { createExpenseAction } from "./loaders/createExpenseLoader";
 import EditProfilePage from "../pages/EditProfilePage";
 import { editRecruiterAction } from "./loaders/editProfileLoader";
+import UploadInvoicePage from "../pages/UploadInvoicePage";
 
 export const routes: RouteObject[] = [
 	{
@@ -53,6 +55,12 @@ export const routes: RouteObject[] = [
 				element: <InvoicesPage />,
 				loader: invoiceLoader,
 				action: editInvoiceAction,
+			},
+			{
+				path: "/invoice/:invoiceId",
+				element: <UploadInvoicePage />,
+				loader: uploadInvoiceLoader,
+				action: editInvoiceLoaderAction,
 			}
 		]
 	},
