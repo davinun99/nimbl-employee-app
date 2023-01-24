@@ -13,9 +13,10 @@ const UploadInvoiceForm = ({ invoice }: Props) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const fetcher = useFetcher();
 	return (
-		<fetcher.Form encType="multipart/form-data">
+		<fetcher.Form encType="multipart/form-data" method="put">
 			<Card>
 				<CardBody>
+					<input type="hidden" name="date" defaultValue={invoice.date || new Date().toISOString().substring(0, 10)} />
 					{fetcher.state !== 'idle' && <LoaderCmp />}
 					<Row>
 						<Col sm={12} md={4}>
@@ -36,6 +37,7 @@ const UploadInvoiceForm = ({ invoice }: Props) => {
 									</Col>
 									{invoice.recruiter_document_id && <Col sm={3} md={2} className="d-flex align-items-center">
 										<span className="actionBtnSpan" onClick={() => handleOpenInvoice(invoice, setIsLoading)} title="Open invoice">
+											{isLoading && <LoaderCmp/>}
 											<FileText width={25}/>
 										</span>
 									</Col>}

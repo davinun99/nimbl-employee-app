@@ -15,10 +15,13 @@ export default uploadInvoiceLoader;
 
 export const editInvoiceLoaderAction = async ({ request, params }: ActionFunctionArgs) => {
 	const formData = await request.formData();
-	const id = formData.get('id');
-	formData.delete('id');
+	const obj:any = Object.fromEntries(formData).files;
+	if(!formData.get('files') || obj?.name === ''){
+		formData.delete('files');
+	}
 	const options = { headers:{ 'Content-Type': 'multipart/form-data' } };
-	return putDataToEndpoint(`/recruitermonth/${id}/invoice`, formData, 'Error saving your document' ,options);
+	const invoiceId = params.invoiceId;
+	return putDataToEndpoint(`/recruitermonth/${invoiceId}/invoice`, formData, 'Error saving your document' ,options);
 }
 
 export type UploadInvoiceLoader = {
