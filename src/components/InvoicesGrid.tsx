@@ -3,6 +3,7 @@ import { Invoice } from "../types";
 import { dateCellToLocale } from "../utils/dateUtils";
 import DefaultGrid from "./DefaultGrid";
 import InvoiceRowActions from "./InvoiceRowActions";
+import StatusBadge from "./StatusBadge";
 
 type Props = {
 	invoices: Invoice[];
@@ -11,7 +12,9 @@ const columnHelper = createColumnHelper<Invoice>();
 const columns: ColumnDef<Invoice, any>[] = [
 	columnHelper.accessor('date', { header: 'Date', cell: dateCellToLocale}),
 	columnHelper.accessor('amount', { header: 'Amount'}),
-	columnHelper.accessor('status', { header: 'Status'}),
+	columnHelper.display({id: 'statusBadges', header: 'Status',
+		cell: props => <StatusBadge invoice={props.row.original}/>
+	}),
 	columnHelper.display({
 		id: 'actions',
 		header: 'Actions',
