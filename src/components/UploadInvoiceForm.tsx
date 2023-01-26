@@ -15,12 +15,16 @@ const UploadInvoiceForm = ({ invoice, col }: Props) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const fetcher = useFetcher();
 	const month = getDateFromStr(invoice.date) ? getDateFromStr(invoice.date)?.toLocaleDateString('en-US',{ month: 'long' }) + '\'s': 'Last ';
+	const newStatus = invoice.status === 'Not uploaded' ? 'Not paid' : invoice.status;
 	return (
 		<fetcher.Form encType="multipart/form-data" method="put" action={`/invoice/${invoice.recruiter_month_id}`}>
 			<Card>
 				<CardBody>
-					<Alert color="info">{month} invoice has been uploaded. <br/>If you'd like to change the amount or upload an amended invoice, please use the fields below to do so</Alert>
+					{invoice.recruiter_document_id &&
+						<Alert color="info">{month} invoice has been uploaded. <br/>If you'd like to change the amount or upload an amended invoice, please use the fields below to do so</Alert>
+					}
 					<input type="hidden" name="date" defaultValue={invoice.date || new Date().toISOString().substring(0, 10)} />
+					<input type="hidden" name="status" defaultValue={newStatus} />
 					{fetcher.state !== 'idle' && <LoaderCmp />}
 					<Row>
 						<Col sm={12} md={col}>

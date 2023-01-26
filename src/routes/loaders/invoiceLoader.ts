@@ -1,7 +1,7 @@
 import { Invoice, NimblUser } from '../../types';
-import { ActionFunctionArgs, defer, redirect } from "react-router-dom";
+import { defer, redirect } from "react-router-dom";
 import { getNimblUser } from "../../utils/localStorage";
-import { getListFromEndpoint, putDataToEndpoint } from '../../utils/axios';
+import { getListFromEndpoint } from '../../utils/axios';
 
 const invoiceLoader = async () => {
 	const nimblUser = getNimblUser();
@@ -13,14 +13,6 @@ const invoiceLoader = async () => {
 }
 
 export default invoiceLoader;
-
-export const editInvoiceAction = async ({ request, params }: ActionFunctionArgs) => {
-	const formData = await request.formData();
-	const id = formData.get('id');
-	formData.delete('id');
-	const options = { headers:{ 'Content-Type': 'multipart/form-data' } };
-	return putDataToEndpoint(`/recruitermonth/${id}/invoice`, formData, 'Error saving your document' ,options);
-}
 
 export type InvoiceLoader = {
 	nimblUser: NimblUser;

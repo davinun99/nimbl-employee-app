@@ -4,6 +4,7 @@ type Props = {
 const ErrorCmp = ({error}: Props) => {
 	let data = "";
 	let dataMsg = "";
+	console.log(error, error.response, error.data, error.response?.message);
 	try {
 		data = JSON.stringify(error?.response?.data);
 		dataMsg = error?.response?.data[0]?.message;

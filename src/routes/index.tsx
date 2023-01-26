@@ -7,7 +7,7 @@ import RootPage from "../pages/RootPage";
 import ExpensesPage from "../pages/ExpensesPage";
 import rootLoader from "./loaders/rootLoader";
 import expenseLoader from "./loaders/expenseLoader";
-import invoiceLoader, { editInvoiceAction } from "./loaders/invoiceLoader";
+import invoiceLoader from "./loaders/invoiceLoader";
 import uploadInvoiceLoader, { editInvoiceLoaderAction } from "./loaders/uploadInvoiceLoader";
 import InvoicesPage from "../pages/InvoicesPage";
 import recruiterLoader from "./loaders/recruiterLoader";
@@ -53,8 +53,7 @@ export const routes: RouteObject[] = [
 			{
 				path: "/invoices",
 				element: <InvoicesPage />,
-				loader: invoiceLoader,
-				action: editInvoiceAction,
+				loader: invoiceLoader
 			},
 			{
 				path: "/invoice/:invoiceId",
