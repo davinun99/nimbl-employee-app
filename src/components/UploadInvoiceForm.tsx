@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { FileText } from "react-feather";
 import { useFetcher } from "react-router-dom";
-import { Button, Card, CardBody, Col, FormGroup, Input, Label, Row } from "reactstrap";
+import { Alert, Button, Card, CardBody, Col, FormGroup, FormText, Input, Label, Row } from "reactstrap";
 import { Invoice } from "../types";
+import { getDateFromStr } from "../utils/dateUtils";
 import { handleOpenInvoice } from "../utils/functions";
 import LoaderCmp from "./LoaderCmp";
 
@@ -13,10 +14,12 @@ type Props = {
 const UploadInvoiceForm = ({ invoice, col }: Props) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const fetcher = useFetcher();
+	const month = getDateFromStr(invoice.date) ? getDateFromStr(invoice.date)?.toLocaleDateString('en-US',{ month: 'long' }) + '\'s': 'Last ';
 	return (
 		<fetcher.Form encType="multipart/form-data" method="put" action={`/invoice/${invoice.recruiter_month_id}`}>
 			<Card>
 				<CardBody>
+					<Alert color="info">{month} invoice has been uploaded. <br/>If you'd like to change the amount or upload an amended invoice, please use the fields below to do so</Alert>
 					<input type="hidden" name="date" defaultValue={invoice.date || new Date().toISOString().substring(0, 10)} />
 					{fetcher.state !== 'idle' && <LoaderCmp />}
 					<Row>
@@ -31,7 +34,6 @@ const UploadInvoiceForm = ({ invoice, col }: Props) => {
 						<Col sm={12} md={col}>
 							<FormGroup>
 								<Label htmlFor="amount" className="mb-1">File</Label>
-								{invoice.recruiter_document_id && <h6 className="text-muted mt-0 opacity-75">This will override existing invoice</h6>}
 								<div className="row">
 									<Col sm={9} md={10}>
 										<Input type="file" name="files" multiple={false} required={invoice.recruiter_document_id ? false : true}/>
@@ -43,6 +45,7 @@ const UploadInvoiceForm = ({ invoice, col }: Props) => {
 										</span>
 									</Col>}
 								</div>
+								{invoice.recruiter_document_id && <FormText>This will override existing invoice file uploaded</FormText>}
 							</FormGroup>
 						</Col>
 					</Row>
