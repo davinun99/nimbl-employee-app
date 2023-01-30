@@ -23,7 +23,7 @@ jobs:
         with: 
           node-version: 16
       - run: yarn install --frozen-lockfile
-      - run: PUBLIC_URL=/employeeportal yarn build 
+      - run: yarn build --base=/employeeportal 
       - name: SFTP Deploy Core Page
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
