@@ -68,6 +68,12 @@ export const routes: RouteObject[] = [
 		element: <LoginPage />
 	}
 ];
-
-const router = createBrowserRouter(routes);
+type RouteOptions = {
+	basename?: string;
+};
+let routeOptions:RouteOptions = {};
+if(window.location.href.includes('nimbl.ai')){
+	routeOptions.basename = '/employeeportal';
+}
+const router = createBrowserRouter(routes, routeOptions);
 export default router;
