@@ -33,7 +33,7 @@ jobs:
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
           
           # will put all file under this path
-          local_path: ./build/* # default is ./*
+          local_path: ./dist/* # default is ./*
           # files will copy to under remote_path
           remote_path: /web/employeeportal
           # delete_remote_files: true
