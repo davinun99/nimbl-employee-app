@@ -10,6 +10,7 @@ import LoaderCmp from '../components/LoaderCmp';
 import { useState } from 'react';
 import { NimblUser } from '../types';
 import { useNavigate } from 'react-router-dom';
+import { handleError } from '../utils/errorUtils';
 
 const LoginPage = () => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -27,6 +28,7 @@ const LoginPage = () => {
 				navigate('/');
 			}
 		} catch (error) {
+			handleError(error, "Error while login in, please try again");
 			Swal.fire({title: "Error", text: `Error while login in, please try again ${error}`, icon: "error"});
 		}
 		setIsLoading(false);

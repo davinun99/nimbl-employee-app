@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@bugsnag/browser-performance": "^2.8.0",
+    "@bugsnag/js": "^8.0.0",
+    "@bugsnag/plugin-react": "^8.0.0",
     "@tanstack/react-table": "^8.7.6",
     "axios": "^1.2.2",
     "bootstrap": "^5.2.3",
