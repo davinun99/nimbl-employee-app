@@ -21,11 +21,7 @@ const refreshTokenIntenceptor = async (error: CustomAxiosError) => {
 		error.isProcessed = true;
 		Swal.fire({ title: "Error", text: "Your session has ended. Please log in again", icon:"error" }).then(() =>{
 			localStorage.clear();
-			if (currentEnv === 'DEV_ENV') {
-				window.location.href = "/login";
-			} else {
-				window.location.href = "/employeeportal/login";
-			}
+			window.location.href = "/login";
 			
 		});
 		return Promise.resolve(null);

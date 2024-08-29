@@ -72,7 +72,7 @@ type RouteOptions = {
 	basename?: string;
 };
 let routeOptions:RouteOptions = {};
-if(window.location.href.includes('nimbl.ai')){
+if(window.location.href.includes('nimbl.ai') && window.location.href.includes('employee') ){
 	routeOptions.basename = '/employeeportal';
 }
 const router = createBrowserRouter(routes, routeOptions);
